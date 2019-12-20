@@ -37,7 +37,7 @@ function y = cww_handle_2d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_
         for i = 1:N
             Y(i,:) = cww_kernel(Y(i, 1:M)', mode);
         end
-
+        Y = Y';
         y = reshape(Y,N*N,1);
 
     else
@@ -54,6 +54,7 @@ function y = cww_handle_2d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_
         for i = 1:M
             Y(:, i) = cww_kernel(Y_tmp(:,i) , mode);
         end
+        Y = Y';
 
         y = reshape(Y,M*M,1);
 

@@ -110,8 +110,6 @@ end
 % A N × M matrix
 function A = cww_get_scaling_matrix_per(log2N, log2M, wname)
 
-    dwtmode('per', 'nodisp');
-
     N = 2^log2N;
     M = 2^log2M;
 
@@ -123,17 +121,9 @@ function A = cww_get_scaling_matrix_per(log2N, log2M, wname)
     N_inner = 2^r;
     a = 2^nres;
 
-    %phi = zeros([N_inner,1]);
-    %phi(vm+1) = 2^(nres/2);
-    %phi = idwt_impl(phi, wname, nres, 'per');
-    %phi = phi';
-    %ub = a*(2*vm);
-    %phi = phi(a+1:ub);
-
-    S = csl_get_wavedec_s(r,nres);
-    psi = zeros([1,N_inner]);
+    psi = zeros([N_inner, 1]);
     psi(vm) = 2^(nres/2);
-    psi = waverec(psi, S, wname);
+    psi = wl_idwt_impl(psi, wname, 'm',  nres, 'bd_mode', 'per' );
     ub = 2^(nres)*(2*vm - 1);
     psi = psi(1:ub);
     psi = 2^(log2M/2)*psi;
@@ -146,7 +136,7 @@ function A = cww_get_scaling_matrix_per(log2N, log2M, wname)
     for i = 1:M
         A(:,i) = circshift(x, 2^nres*(i-1));
     end
-    %A = 2^(log2M/2)*A;
+
 end
 
 
