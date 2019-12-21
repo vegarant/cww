@@ -39,7 +39,7 @@ phi_walsh_pieces = cww_get_phi_walsh_pieces(R+q, R, wname, bd_mode, j0);
 [idx, str_id] = sph2_gsquare(N, nbr_samples, a, r0, nbr_levels);
 %[idx, str_id] = sph2_2level(N, nbr_samples, p_norm, r_factor)
 
-samples = walsh_sampling2(f, N);
+samples = cww_walsh_sampling_2d(f, N);
 
 
 
@@ -92,7 +92,6 @@ subplot(133); imagesc(F_approx); colormap('gray'); title('Walsh approximation');
 %f = @(x,y) 10*cos(1.5*pi*x).*sin(3*pi*y) + 10*(x>= 0.5);
 %F2 = f(X2,Y2);
 %
-%samples = walsh_sampling2(f, N);
 %
 %
 %
