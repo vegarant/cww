@@ -82,24 +82,3 @@ subplot(133); imagesc(F_approx); colormap('gray'); title('Walsh approximation');
 
 
 
-%
-%N2 = 2^(R+q+q2)
-%t2 = linspace(0,1,N2);
-%
-%[X2,Y2] = meshgrid(t2,t2);
-%
-%%f = @(x,y) 5*(x-1).*(x-0.5).*(x-0.25).*cos(4*pi*y) + 5;
-%f = @(x,y) 10*cos(1.5*pi*x).*sin(3*pi*y) + 10*(x>= 0.5);
-%F2 = f(X2,Y2);
-%
-%
-%
-%
-%
-%
-%
-%F_approx = zeros(N2,N2);
-%F_approx(1:N, 1:N) = samples;
-%F_approx = cww_fastwht_2d(F_approx)*N2*N2;
-
-

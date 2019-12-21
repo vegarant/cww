@@ -15,11 +15,7 @@
 %
 function samples = cww_walsh_sampling_2d(f, N)
 
-    Omega  = [(0:N-1)', (0:N-1)'];
-    eps = 1e-14;
-    samples = zeros(size(Omega,1), size(Omega,2));
-
-    int_factor = 2^3;
+    int_factor = 2^4;
     t = linspace(0, 1-eps, int_factor*N);
     [X,Y] = meshgrid(t,t);
     F = f(X,Y);

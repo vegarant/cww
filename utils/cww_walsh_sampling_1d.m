@@ -13,18 +13,14 @@
 % OUTPUT
 % The walsh samples specified in Omega.
 %
-function samples = cww_walsh_sampling_1d(f, N, Omega)
-    if (nargin < 3) 
-        Omega  = 1:N;
-    end
-
+function samples = cww_walsh_sampling_1d(f, N)
+    
     int_factor = 2^4;
     Nf = int_factor*N;
-    
+
     t = linspace(1/(2*Nf), 1-(1/(2*Nf)), Nf)';
-    
+
     func_values = f(t);
-    wfunc_values = fastwht(func_values);    
-    samples = wfunc_values(Omega);
+    samples = fastwht(func_values);    
 
 end
