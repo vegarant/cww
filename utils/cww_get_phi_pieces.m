@@ -66,12 +66,11 @@ function pieces = cww_get_phi_pieces(r, wname, bd_mode, j0)
             end 
         end
 
+        % Ensure that there are interior wavelets
         if abs(round(log2(2*vm)) - j0) < 1e-5
-            N = 2*N
+            N = 2*N;
         end
-        %ei = zeros([N,1]);
-        %ei(vm+1) = 2^(r/2);
-        %wc = IWT_CDJV_noP(ei, j0, vm); % Notice that the first 2^r coefficients are 0
+        
         phi = zeros([N,1]);
         phi(vm) = 2^((r)/2);    
 

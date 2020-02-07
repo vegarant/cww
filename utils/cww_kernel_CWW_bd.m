@@ -51,12 +51,12 @@ function y = cww_kernel_CWW_bd(x, mode, wname, log2N, log2M, phi_walsh_pieces)
         c_sum_right = zeros(N,1);
         s = zeros([N,1]);
         for h = 0:2^q-1
-            for m = 0:vm-1
+            for k = 0:vm-1
                 s1 = zeros([M,1]);
-                for l = 0:vm-1+m 
-                    s1 = s1 + had_mat_idx(N, M*h + idx, 2^q*(M-vm-m+l)+1) * phi_walsh_pieces{vm+2+m, l+1}(1 + h);
+                for l = 0:vm-1+k 
+                    s1 = s1 + had_mat_idx(N, M*h + idx, 2^q*(M-vm-k+l)+1) * phi_walsh_pieces{vm+2+k, l+1}(1 + h);
                 end
-                s(M*h + idx) = s(M*h + idx) + s1*x(M-m);
+                s(M*h + idx) = s(M*h + idx) + s1*x(M-k);
             end
         end
         c_sum_right = s/sqrt(M);

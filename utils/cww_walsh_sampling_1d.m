@@ -2,25 +2,29 @@
 % transform
 %            Wf(n) = int_{0}^{1} f(x)w_n(x) dx
 %
-% Here N-1 is the maximum frequency and Omega is a subset of {0, ..., N-1} 
+% Here N-1 is the maximum frequency.
 %
 % INPUT
 % f     - Function f : [0,1) -> R 
 % N     - N-1 is the maximum frequency
-% Omega - Subset of {0,...,N-1}, if no argument is provided Omega is chosen as 
-%         Omega = {0, ..., N-1}.
+% r     - Numerical integration uses 2^r sampling points in each interval of
+%         length 1/(2*N) 
 %
 % OUTPUT
-% The walsh samples specified in Omega.
+% The N first walsh samples.
 %
-function samples = cww_walsh_sampling_1d(f, N)
+function samples = cww_walsh_sampling_1d(f, N, r)
     
-    int_factor = 2^4;
+    if nargin < 3
+        r = 4;
+    end
+    int_factor = 2^r;
+    
     Nf = int_factor*N;
 
     t = linspace(1/(2*Nf), 1-(1/(2*Nf)), Nf)';
 
     func_values = f(t);
     samples = fastwht(func_values);    
-
+    samples = samples(1:N);
 end
