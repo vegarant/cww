@@ -27,7 +27,7 @@ t2 = linspace(0,1,N2);
 f = @(x,y) 10*cos(1.5*pi*x).*sin(3*pi*y) + 10*(x>= 0.5);
 F2 = f(X2,Y2);
 
-samples = cww_walsh_sampling_2d(f, N);
+samples = cww_sample_walsh_2d(f, N);
 phi_walsh_pieces = cww_get_phi_walsh_pieces(R+q, R, wname, bd_mode, j0);
 G = @(x,mode) cww_handle_2d(x, mode, R+q, R, wname, bd_mode, j0, phi_walsh_pieces); 
 

@@ -32,7 +32,7 @@ end
 %f = @(x) 50*(x-0.6).*(x-0.5).*(x-0.5).*(x-0.05).*(x-0.95) + x;
 f = @(x) 2*x.*(x <= 0.5) + (2 - 2*x).*(x > 0.5);
 
-samples = cww_walsh_sampling_1d(f,N);
+samples = cww_sample_walsh_1d(f,N);
 
 fig = figure('visible', disp_plot);
 

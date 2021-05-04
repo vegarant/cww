@@ -43,7 +43,7 @@ f = @(x) 2*x.*(x <= 0.5) + (2 - 2*x).*(x > 0.5);
 %f = @(x) cos(2*pi*x)  + 0.2 * cos(2*pi*8 *x); 
 %f = @(x) (x+1).*(x-0.5).*(x-0.25).*(x+3).*(x-0.6); %+ cos(2*pi*x).*(x <= 0.5); 
 
-samples = cww_walsh_sampling_1d(f,N);
+samples = cww_sample_walsh_1d(f,N);
 
 [idx, scales] = sph1_rect2(N, M, nbr_samples, j0);
 %idx = 1:nbr_samples;

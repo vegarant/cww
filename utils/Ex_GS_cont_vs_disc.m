@@ -25,9 +25,9 @@ f = @(x) 50*(x-0.6).*(x-0.5).*(x-0.5).*(x-0.05).*(x-0.95) + x + 0.5*(x > 0.5-(1/
 %f = @(x) (x+1).*(x-0.5).*(x-0.25).*(x+3).*(x-0.6); %+ cos(2*pi*x).*(x <= 0.5); 
 
 r = 5;
-samples_cont = cww_walsh_sampling_1d(f,N, r);
+samples_cont = cww_sample_walsh_1d(f,N, r);
 r = 0;
-samples_disc = cww_walsh_sampling_1d(f,N, r);
+samples_disc = cww_sample_walsh_1d(f,N, r);
 
 phi_walsh_pieces = cww_get_phi_walsh_pieces(R+q, R, wname, bd_mode, j0);
 

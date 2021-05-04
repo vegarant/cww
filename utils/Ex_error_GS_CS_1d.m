@@ -12,8 +12,8 @@ subsampling_rate = 1/(2^s_factor);
 noise = 1e-8;
 dims = 1;
 dest = 'plots';
-disp_plot = 'on';
-do_save = 0;
+disp_plot = 'off';
+do_save = 1;
 plot_walsh = 1;
 location = 'north';
 
@@ -44,8 +44,8 @@ f = @(x) 2*x.*(x <= 0.5) + (2 - 2*x).*(x > 0.5);
 %f = @(x) cos(2*pi*x)  + 0.2 * cos(2*pi*6 *x);
 %f = @(x) (x+1).*(x-0.5).*(x-0.25).*(x+3).*(x-0.6); %+ cos(2*pi*x).*(x <= 0.5); 
 
-samples = cww_walsh_sampling_1d(f,N);
-samples_GS = cww_walsh_sampling_1d(f,N_GS);
+samples = cww_sample_walsh_1d(f,N);
+samples_GS = cww_sample_walsh_1d(f,N_GS);
 
 [idx, scales] = sph1_rect2(N, M, nbr_samples, j0);
 idx = idx';

@@ -34,7 +34,7 @@ bd_mode_bd = 'bd';
 f = @(x) cos(2*pi*x)  + x; %0.2 * cos(2*pi*6 *x);
 %f = @(x) (x+1).*(x-0.5).*(x-0.25).*(x+3).*(x-0.6); %+ cos(2*pi*x).*(x <= 0.5); 
 
-samples = cww_walsh_sampling_1d(f,N);
+samples = cww_sample_walsh_1d(f,N);
 
 phi_walsh_pieces_per = cww_get_phi_walsh_pieces(R+q, R, wname, bd_mode_per, j0);
 phi_walsh_pieces_bd = cww_get_phi_walsh_pieces(R+q, R, wname, bd_mode_bd, j0);

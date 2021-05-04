@@ -39,7 +39,7 @@ phi_walsh_pieces = cww_get_phi_walsh_pieces(R+q, R, wname, bd_mode, j0);
 [idx, str_id] = sph2_gsquare(N, nbr_samples, a, r0, nbr_levels);
 %[idx, str_id] = sph2_2level(N, nbr_samples, p_norm, r_factor)
 
-samples = cww_walsh_sampling_2d(f, N);
+samples = cww_sample_walsh_2d(f, N);
 
 
 

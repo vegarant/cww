@@ -13,7 +13,7 @@
 % OUTPUT
 % The N first walsh samples.
 %
-function samples = cww_walsh_sampling_1d(f, N, r)
+function samples = cww_sample_walsh_1d(f, N, r)
     
     if nargin < 3
         r = 4;
