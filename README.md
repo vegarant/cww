@@ -1,4 +1,4 @@
-# Continuous Walsh sampling and wavelet reconstruction (CWW)
+# CWW - Continuous Walsh sampling and wavelet reconstruction 
 This software implements the change of basis matrix between a Walsh sampling basis and orthonormal wavelet reconstruction basis using fast transforms in one and two dimensions. It is accompanied by numerous easy examples. 
 
 ## Dependencies
