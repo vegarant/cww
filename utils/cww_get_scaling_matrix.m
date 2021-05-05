@@ -139,12 +139,3 @@ function A = cww_get_scaling_matrix_per(log2N, log2M, wname)
 
 end
 
-
-
-
-
-
-
-
-
-

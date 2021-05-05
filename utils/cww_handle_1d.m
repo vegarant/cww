@@ -2,7 +2,7 @@ function y = cww_handle_1d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_
 
     vm = cww_extract_vm_from_wname(wname);
     is_per = cww_extract_is_per_from_bd_mode(bd_mode);
-    
+
     if (nargin < 7) 
         j0 = cww_compute_j0(vm);
     end
