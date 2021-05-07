@@ -1,3 +1,7 @@
+% This script compares generalised sampling and truncated walsh reconstruction in 
+% two dimensions, using a finite number of samples. By adjusting the number of 
+% vanishing momenents one can see how the reconstruction improves.
+
 clear all
 
 load('cww_defaults.mat') % load font size, line width, etc.

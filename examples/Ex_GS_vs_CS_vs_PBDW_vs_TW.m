@@ -1,3 +1,12 @@
+% This script compares the four methods
+% (1) generalised sampling (GS)
+% (2) compressive sensing (CS)
+% (3) PBDW-method
+% (4) Truncated walsh (TW)
+% from walsh samples.
+%
+
+
 clear all
 
 load('cww_defaults.mat') % load font size, line width, etc.
