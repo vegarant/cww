@@ -29,7 +29,7 @@ for i = 1:nbr_wavelets
         M = 2^log2M;
         N = 2^log2N;
         sing_vals = svds(G, [N,M], M);
-        fprintf('& %6.3f ', sing_vals(1)/sing_vals(M));
+        fprintf('& %6.3f ', 1/sing_vals(M));
     end
     fprintf('\\\\ \n');
 end
@@ -54,7 +54,7 @@ for i = 1:nbr_wavelets
         M = 2^log2M;
         N = 2^log2N;
         sing_vals = svds(G, [N*N,M*M], M*M);
-        fprintf('& %6.3f ', sing_vals(1)/sing_vals(M*M));
+        fprintf('& %6.3f ', 1/sing_vals(M*M));
     end
     fprintf('\\\\ \n');
 end
