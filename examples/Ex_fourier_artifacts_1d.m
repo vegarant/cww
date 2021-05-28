@@ -8,7 +8,7 @@ clear all
 
 load('cww_defaults.mat') % load font size, line width, etc.
 
-R = 5; % 8
+R = 8; % 8
 q2 = 6;
 dest = 'plots';
 disp_plot = 'off';
@@ -43,13 +43,21 @@ fig = figure('visible', disp_plot);
 
 eps = 1e-14;
 t1 = linspace(0,1-eps,N2)';
-plot(t1,f(t1), 'color', cww_dflt.blue, 'linewidth', cww_dflt.line_width);
-hold('on');
+plot(t1,f(t1), 'color', 'k', 'linewidth', cww_dflt.line_width);
+legend('f(t)', 'location', 'northeast', 'fontsize', cww_dflt.font_size)
+set(gca, 'FontSize', cww_dflt.font_size);
+ylim([ymin-0.05*mag, ymax+0.05*mag])
 
+fname = sprintf('fourier_artifacts_f', M);
 
-plot(t1, fourier_approx, 'color', cww_dflt.orange, 'linewidth', cww_dflt.line_width);
+if do_save
+    saveas(fig, fullfile(dest, fname), 'png');
+    saveas(fig, fullfile(dest, fname), cww_dflt.plot_format);
+end
 
-legend({'f(t)', 'Fourier'}, 'location', 'northeast', 'fontsize', cww_dflt.font_size)
+fig = figure('visible', disp_plot);
+plot(t1, fourier_approx, 'color', 'k', 'linewidth', cww_dflt.line_width);
+legend('Fourier', 'location', 'northeast', 'fontsize', cww_dflt.font_size)
 set(gca, 'FontSize', cww_dflt.font_size);
 ylim([ymin-0.05*mag, ymax+0.05*mag])
 

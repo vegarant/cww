@@ -1,4 +1,3 @@
-
 function y = cww_handle_2d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_pieces)
 
     vm = cww_extract_vm_from_wname(wname);
@@ -30,11 +29,14 @@ function y = cww_handle_2d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_
 
         Y = zeros(N,N);
 
-        parfor i = 1:M
+        %parfor i = 1:M
+        for i = 1:M
             Y(:, i) = cww_kernel(sc(:, i), mode);
         end
         X = Y;
-        parfor i = 1:N
+        
+        %parfor i = 1:N
+        for i = 1:N
             Y(i,:) = cww_kernel(X(i, 1:M)', mode);
         end
         Y = Y';
@@ -46,12 +48,14 @@ function y = cww_handle_2d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_
         x = reshape(x,N,N);
         Y_tmp = zeros(N, M);
 
-        parfor i = 1:N
+        %parfor i = 1:N
+        for i = 1:N
             Y_tmp(i, :) = cww_kernel(x(i,:)' , mode);
         end
 
         Y = zeros(M,M);
-        parfor i = 1:M
+        %parfor i = 1:M
+        for i = 1:M
             Y(:, i) = cww_kernel(Y_tmp(:,i) , mode);
         end
         Y = Y';

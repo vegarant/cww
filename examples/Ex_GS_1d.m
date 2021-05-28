@@ -59,21 +59,31 @@ x = A*sc;
 eps = 1e-14;
 t1 = linspace(0,1-eps,N2)';
 ft1 = f(t1);
-ymax = max(max(ft1(:), max(x(:))));
-ymin = min(min(ft1(:), min(x(:))));
+ymax = max(max(ft1(:)), max(x(:)));
+ymin = min(min(ft1(:)), min(x(:)));
 
 fig = figure('visible', disp_plot);
-plot(t1,f(t1), 'color', cww_dflt.blue, 'linewidth', cww_dflt.line_width);
-hold('on');
-
-plot(t1,x, 'color', cww_dflt.orange, 'linewidth', cww_dflt.line_width);
-
-
-legend({'f(t)', 'GS'}, 'location', location, 'fontsize', cww_dflt.font_size)
-
+plot(t1,f(t1), 'color', 'k','linewidth', cww_dflt.line_width);
+legend('g(t)',  'location', location, 'fontsize', cww_dflt.font_size)
 set(gca, 'FontSize', cww_dflt.font_size);
 r = 0.1;
 axis([0,1, ymin - r*sign(ymin)*ymin, ymax + r*sign(ymax)*ymax])
+
+if do_save
+    fname = sprintf('GS_1d_f', N, M, wname, bd_mode);
+    fprintf('saving as: %s.%s\n', fullfile(dest, fname), cww_dflt.plot_format(1:3));
+    
+    saveas(fig, fullfile(dest, fname), 'png');
+    saveas(fig, fullfile(dest, fname), cww_dflt.plot_format);
+end
+
+fig = figure('visible', disp_plot);
+plot(t1,x, 'color', 'k', 'linewidth', cww_dflt.line_width);
+legend('GS', 'location', location, 'fontsize', cww_dflt.font_size)
+set(gca, 'FontSize', cww_dflt.font_size);
+r = 0.1;
+axis([0,1, ymin - r*sign(ymin)*ymin, ymax + r*sign(ymax)*ymax])
+
 
 if do_save
     fname = sprintf('GS_1d_N_%d_M_%d_%s_%s', N, M, wname, bd_mode);
@@ -92,13 +102,13 @@ if plot_walsh
     raw_samples(1:N) = samples;
     walsh_approx = fastwht(raw_samples)*N2;
     
-    plot(t1,f(t1), 'color', cww_dflt.blue, 'linewidth', cww_dflt.line_width);
-    hold('on');
+    %plot(t1,f(t1), 'color', cww_dflt.blue, 'linewidth', cww_dflt.line_width);
+    %hold('on');
 
-    plot(t1, walsh_approx, 'color', cww_dflt.orange, 'linewidth', cww_dflt.line_width);
+    plot(t1, walsh_approx, 'color', 'k', 'linewidth', cww_dflt.line_width);
 
 
-    legend({'f(t)', 'Walsh'}, 'location', location, 'fontsize', cww_dflt.font_size)
+    legend('Walsh', 'location', location, 'fontsize', cww_dflt.font_size)
 
     set(gca, 'FontSize', cww_dflt.font_size);
     axis([0,1, ymin - r*sign(ymin)*ymin, ymax + r*sign(ymax)*ymax])

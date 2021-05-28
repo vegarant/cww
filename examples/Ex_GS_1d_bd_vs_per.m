@@ -1,4 +1,4 @@
-% This script uses generalized sampling to reconstruct to reconstruction two functions
+% This script uses generalized sampling to reconstruction two functions
 % using wavelets with different boundary handling. Both functions are smooth, 
 % but one of them is non-periodic on the interval [0,1]. We consider a wavelet 
 % reconstruction bases with periodic and boundary corrected wavelet function.  
@@ -13,6 +13,7 @@ R = 4;
 q = 1;
 q2 = 5;
 vm = 4;
+func_name = 'f';
 is_per = 1;             % Set this to 0, to use boundary corrected wavelets
 dest = 'plots';
 disp_plot = 'off';
@@ -39,7 +40,7 @@ else
 end
 
 % Add the `+ x` part to make the function smooth but non-periodict. 
-f = @(x) cos(2*pi*x); % + x 
+f = @(x) cos(2*pi*x);%  + x;
 
 samples = cww_sample_walsh_1d(f,N);
 
@@ -52,38 +53,37 @@ sc = lsqr(G,samples, [], 600);
 x = cww_map_wcoeff_to_func_vals_1d(sc, R+q+q2, wname, bd_mode);
 t = linspace(0,1,N2);
 
-fig = figure('visible', disp_plot);
 
 eps = 1e-14;
 t1 = linspace(0,1-eps,N2)';
 ft1 = f(t1);
-ymax = max(max(ft1(:), max(x(:))));
-ymin = min(min(ft1(:), min(x(:))));
+ymax = max(max(ft1(:)), max(x(:)));
+ymin = min(min(ft1(:)), min(x(:)));
 
-plot(t1,f(t1), 'color', cww_dflt.blue, 'linewidth', cww_dflt.line_width);
-hold('on');
-
-plot(t1,x, 'color', cww_dflt.orange, 'linewidth', cww_dflt.line_width);
-
-if plot_walsh
-    raw_samples = zeros([N2,1]);
-    raw_samples(1:N) = samples;
-    walsh_approx = fastwht(raw_samples)*N2;
-    plot(t1, walsh_approx, 'color', cww_dflt.red, 'linewidth', cww_dflt.line_width);
-end
-
-if plot_walsh
-    legend({'f(t)', sprintf('GS - %s.', bd_mode), 'Walsh'}, 'location', location, 'fontsize', cww_dflt.font_size)
-else 
-    legend({'f(t)', sprintf('GS - %s.', bd_mode)}, 'location', location, 'fontsize', cww_dflt.font_size)
-end
-
+fig = figure('visible', disp_plot);
+plot(t1,f(t1), 'color', 'k', 'linewidth', cww_dflt.line_width);
+legend(sprintf('%s(t)', func_name), 'location', location, 'fontsize', cww_dflt.font_size)
 set(gca, 'FontSize', cww_dflt.font_size);
 r = 0.1;
 axis([0,1, ymin - r*sign(ymin)*ymin, ymax + r*sign(ymax)*ymax])
 
 if do_save
-    fname = sprintf('GS_1d_N_%d_M_%d_%s_%s', N, M, wname, bd_mode);
+    fname = sprintf('bd_vs_per_GS_1d_%s', func_name);
+    fprintf('saving as: %s.%s\n', fullfile(dest, fname), cww_dflt.plot_format(1:3));
+    
+    saveas(fig, fullfile(dest, fname), 'png');
+    saveas(fig, fullfile(dest, fname), cww_dflt.plot_format);
+end
+
+fig = figure('visible', disp_plot);
+plot(t1,x, 'color', 'k', 'linewidth', cww_dflt.line_width);
+legend(sprintf('GS - %s.', bd_mode), 'location', location, 'fontsize', cww_dflt.font_size)
+set(gca, 'FontSize', cww_dflt.font_size);
+r = 0.1;
+axis([0,1, ymin - r*sign(ymin)*ymin, ymax + r*sign(ymax)*ymax])
+
+if do_save
+    fname = sprintf('bd_vs_per_GS_1d_%s_N_%d_M_%d_%s_%s', func_name, N, M, wname, bd_mode);
     fprintf('saving as: %s.%s\n', fullfile(dest, fname), cww_dflt.plot_format(1:3));
     
     saveas(fig, fullfile(dest, fname), 'png');

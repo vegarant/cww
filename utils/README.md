@@ -21,6 +21,9 @@
 * `cww_map_wcoeff_to_func_vals_2d.m` - Maps wavelet coeff. to pointwise samples of the wavelet in two dimensions.
 * `cww_sample_walsh_1d.m` - Samples a function f:[0,1] -> R using walsh functions.
 * `cww_sample_walsh_2d.m` - Samples a function f:[0,1]^2 -> R using walsh functions.
+* `cww_sph1_power_law.m` - One dimensional sampling pattern based on power law sampling
+* `cww_visualize_1d_samp_patt.m` - Converts a one dimensional sampling pattern to an image
+
 
 -----------
 
