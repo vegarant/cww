@@ -1,4 +1,4 @@
-% This file set variuous parameters to get consistency between files
+% This file set variuous parameters to get consistency between example files
 % The parameters found in this file, will be considered as default parameters
 
 clear('all'); close('all');

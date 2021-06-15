@@ -1,15 +1,22 @@
-% Two dimensional fast Walsh-Hadamard transform. The transform is normalized,
-% so that the transform becomes unitary. 
+% Two-dimensional fast Walsh-Hadamard transform. 
 %
-% INPUT
-% X     - Matrix to be transformed 
-% order - The order of the Walsh-Hadamard transform. 
-%           * 'sequency' (default)
-%           * 'hadamard' 
-%           * 'dyadic'
+% Given an input matrix X, this function computes H*X*H', where H is a Hadamard 
+% matrix.
 %
-% OUTPUT
-% Y - The transformed matrix
+% The transform is normalized so that the underlying linear operator is unitary. 
+%
+% Arguments
+% ---------
+% X (mat): Input matrix to be transformed 
+% order (str):  The order of the Walsh-Hadamard transform. 
+%               * 'sequency' (default)
+%               * 'hadamard' 
+%               * 'dyadic'
+%
+% Return
+% ------
+% Y (mat): The transformed matrix
+%
 function Y = cww_fastwht_2d(X, order)
 
     if (nargin == 1)

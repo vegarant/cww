@@ -1,9 +1,29 @@
+% Internal function used to compute the matrix-vector multiplication (for wavelets
+% with periodic wavelets). 
 %
-% x     - Signal coefficients 
-% mode  - 1: forward transform, 2: adjoint operation 
-% vm    - Number of vanishing moments
-% log2N - 2^log2N = N
-% log2M - 2^log2M = M
+% Let `U` denote the change-of-basis matrix between a Walsh basis and an 
+% orthonormal wavelet basis with periodic wavelets at the 
+% boundaries. Let `P_M` denote a projection matrix onto the first M
+% components of a sequence. This function computes the matrix-vector 
+% multiplication with the matrix 
+%                                  P_N U P_M  
+% and its transpose. 
+%
+% Arguments
+% ---------
+% x (vector): Input vector for the matrix-vector multiplication
+% mode (int): If mode == 1 or mode == 'notransp', we compute a matrix-vector 
+%             multiplication with `P_N U P_M`, otherwise we compute matrix-vector 
+%             with its transpose.
+% wname (str): Wavelet name
+% log2N (int): `N=2^(log2N)`, where N is the number of rows
+% log2M (int): `M=2^(log2M)`, where M is the number of columns.
+% phi_walsh_pieces (struct): Walsh transform of the wavelet scaling function
+%
+% Return
+% ------
+% y (vector): The result of the matrix-vector multiplication with `P_N U P_M` 
+%             or its transpose.
 %
 function y = cww_kernel_CWW_per(x, mode, wname, log2N, log2M, phi_walsh_pieces)
     

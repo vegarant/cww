@@ -1,3 +1,30 @@
+% Computes a matrix-vector multiplication with an N^2 × M^2 section of a 
+% change-of-basis matrix between a two-dimensional Walsh basis and a 
+% two-dimensional orthonormal wavelet basis.
+%
+% Let `U` denote the change-of-basis matrix between a two-dimensional Walsh basis 
+% and a two-dimensional orthonormal wavelet basis. Let `P_{M^2}` 
+% denote a projection matrix onto the first M^2 components of a sequence. This 
+% function computes the matrix-vector multiplication with the matrix 
+%                                  P_{N^2} U P_{M^2}  
+% and its transpose. 
+%
+% Arguments
+% ---------
+% x (vector): Input vector for the matrix-vector multiplication (a vectorized matrix).
+% mode (int): If mode == 1 or mode == 'notransp', we compute a matrix-vector 
+%             multiplication with `P_N U P_M`, otherwise we compute matrix-vector 
+%             with its transpose.
+% log2N (int): `N=2^(log2N)`, where N × Nis the number of rows
+% log2M (int): `M=2^(log2M)`, where M × M is the number of columns.
+% j0 (int): Minimum wavelet decomposition level.
+% phi_walsh_pieces (struct): Walsh transform of the wavelet scaling function
+%
+% Return
+% ------
+% y (vector): The result of the matrix-vector multiplication with 
+%             `P_{N}^2 U P_{M^2}` or its transpose.
+%
 function y = cww_handle_2d(x, mode, log2N, log2M, wname, bd_mode, j0, phi_walsh_pieces)
 
     vm = cww_extract_vm_from_wname(wname);

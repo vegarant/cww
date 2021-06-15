@@ -1,9 +1,24 @@
-% Update code
-
-% vm    - Number of vanishing moments
-% j     - scaling function decomposition level i.e. 2^j = M
-% log2N - 2^log2N = N, number of samples
-% is_per - whether a periodic or boundary wavelet basis should be used
+% Computes the Walsh transform of the wavelet scaling function in each interval [l, l+1].
+%
+% Computes the Walsh transform of the wavelet scaling functions needed for the 
+% fast computation of a matrix-vector multiplication with an N×M section of 
+% the infinite-dimensional change of basis matrix between the Walsh basis and 
+% a given wavelet basis.
+% 
+% The ratio N/M determines how many Walsh transform is computed. 
+%
+% Arguments
+% ---------
+% log2N (int): `ceil(log2(N))`, size of the output dimension.
+% log2M (int): `ceil(log2(M))`, size of the input dimension.
+% wname (str): Wavelet name
+% bd_mode (str): Boundary handling (either 'per' or 'bd').
+% j0 (int): Minimum wavelet decomposition level.
+%
+% Return
+% ------
+% pieces (struct): Walsh transform of the different wavelet pieces.
+%
 function pieces = cww_get_phi_walsh_pieces(log2N, log2M, wname, bd_mode, j0);
 
     r = log2N - log2M + 5;

@@ -1,17 +1,20 @@
-% Samples the function f: [0,1]^2 -> R with walsh functions as the integral
-% transform
-%            Wf(n,m) = int_{0}^{1} int_{0}^{1} f(x,y)w_n(x)w_m(y) dx dy
+% Computes the Walsh transform of a function f: [0,1)^2 -> R.
 %
-% Here N-1 is the maximum frequency. 
+% Given a function f: [0,1)^2 -> R, this procedure computes the integral
+%   Wf(n) = int_{0}^{1} int_{0}^{1} f(t_1,t_2)w_{n_1}(t_1)w_{n_2}(t_2) dt_1 dt_2,
+% where w_n : [0,1) -> {-1,+1} is sequency ordered Walsh function, for 
+% n_1, n_2 = 0,...,N-1 
 %
-% INPUT
-% f     - Function f : [0,1)^2 -> R 
-% N     - N-1 is the maximum frequency
-% r     - Numerical integration uses 2^r sampling points in each interval of
-%         length 1/(2*N) 
+% Arguments
+% ---------
+% f (function_handle): Function f : [0,1)^2 -> R. 
+% N (int): N-1 is the maxiumum Walsh frequency beeing sampled.
+% r (int): Numerical integration uses 2^r sampling points in each interval of
+%         length 1/N (optional, default r=4).
 %
-% OUTPUT
-% The N first walsh samples.
+% Return
+% ------
+% samples (mat): The N×N first Walsh samples.
 %
 function samples = cww_sample_walsh_2d(f, N, r)
 

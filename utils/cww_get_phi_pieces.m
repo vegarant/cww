@@ -1,9 +1,23 @@
-% r - 2^r is the size of each pisce
-% wname - Wavelet name
-% bd_mode - 'per' or 'bd'. If 'per', pieces is a cell array with the 2*vm-1 unit pieces
-% of phi. If 'bd', pieces is a 2*vm+1 times 2*vm-1, where the rows correpsonds
-% to the different functions, and columns consists of the unit pieces. Notice
-% that some of the entries will be empty due to the different supports.  
+% Extracts the wavelet scaling function (also boundary scaling functions).
+%
+% The function computes an approximation to the wavelet scaling function phi for 
+% a given wavelet, using the cascade algorithm. The resulting approximation is
+% split into pieces, so that each piece approximate the function on the interval 
+% [l, l+1], for an appropriate integer l. 
+%
+% Arguments
+% ---------
+% r (int): 2^r is the size of each piece
+% wname (str): Wavelet name
+% bd_mode (str): 'per' or 'bd'. If 'per', pieces is a cell array with the 
+%                2*vm-1 unit pieces of phi. If 'bd', pieces is a 
+%                (2*vm+1 x 2*vm-1), where the rows correspond to the 
+%                different functions, and columns consists of the unit pieces. 
+%                Notice that some of the entries will be empty due to the 
+%                different supports.  
+%
+% Return
+% pieces (struct): The wavelet pieces
 %
 function pieces = cww_get_phi_pieces(r, wname, bd_mode, j0)
 
