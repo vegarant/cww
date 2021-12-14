@@ -6,7 +6,7 @@ This software implements fast matrix-vector multiplication with an NxM section o
 
 ## Dependencies
 * [SPGL1](http://www.cs.ubc.ca/~mpf/spgl1/). A solver for large-scale sparse reconstruction
-* [Fastwht](https://bitbucket.org/vegarant/fastwht/). A fast implementation of MATLAB's `fwht`-function and Walsh functions.
+* [Fastwht](https://github.com/vegarant/fastwht). A fast implementation of MATLAB's `fwht`-function and Walsh functions.
 * [WL - General purpose wavelet library](https://github.com/oyvindry/wl/tree/new_interface). Wavelet library for boundary wavelet support. Note that the branch `new_interface` is used.
 * [CIlib - A software library for compressive imaging](https://github.com/vegarant/cilib). This library is used for one of the two-dimensional sampling patterns. 
 
