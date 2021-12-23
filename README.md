@@ -20,7 +20,7 @@ addpath('/path/to/cww/utils');
 
 
 ## Parallel computations
-It is possible to speed up the computations of the two-dimensional algorithm by using MATLAB's [Parallel Computing Toolbox](https://se.mathworks.com/products/parallel-computing.html). To do so, replace write `parfor`, instead of `for`, in the script `utils/cww_handle_2d.m`. The relevant line numbers are 33, 39, 51 and 57. 
+It is possible to speed up the computations of the two-dimensional algorithm by using MATLAB's [Parallel Computing Toolbox](https://se.mathworks.com/products/parallel-computing.html). To do so, write `parfor`, instead of `for`, in the script `utils/cww_handle_2d.m`. The relevant line numbers are 33, 39, 51 and 57. 
 
 
 
